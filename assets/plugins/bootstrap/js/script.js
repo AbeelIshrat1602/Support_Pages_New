@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Feedback Widget Integration
     const injectFeedbackWidget = () => {
         // Use absolute path to ensure compatibility across directory levels
-        const basePath = 'feedback-widget.html';
+        const basePath = '/feedback-widget.html';
 
         fetch(basePath)
             .then((response) => {

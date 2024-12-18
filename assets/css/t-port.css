@@ -1,0 +1,577 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: auto;
+  width: auto;
+}
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  font-family: "CustomFont";
+}
+
+button {
+  font-family: "TodaySansNow Pro";
+}
+
+a {
+  font-family: "TodaySansNow Pro";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+section {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 500;
+}
+h2 {
+  font-weight: 500;
+}
+
+h3 {
+  font-weight: 500;
+}
+/* p {
+    font-family: "Today Sans" !important;
+  } */
+
+/* _______________________HEADER__________________- */
+header {
+  /* background: #1e3565; */
+  color: #fff;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 91px;
+  flex-shrink: 0;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 55.5px;
+  margin-right: 55.5px;
+}
+
+.log-cont {
+  height: auto;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.log-img {
+  max-width: 150px;
+}
+.ht-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ht-cont > p {
+  color: #fff;
+  font-family: "TodaySansNow Pro";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* _____________HERO________________________ */
+
+.hero {
+  margin-bottom: 4rem;
+  z-index: 0;
+}
+.hero-cont {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.bg-absolute {
+  position: absolute;
+  top: -30rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bg-absolute-2 {
+  position: absolute;
+  top: -29.5rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+
+.hero-container {
+  padding-top: 1rem;
+  bottom: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 103vw;
+  height: 100%;
+  /* background: url("../assets/ellipse.png") no-repeat center center/cover; */
+}
+
+.hero-container div:first-child {
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  width: 100%;
+}
+
+.hero-container div:nth-child(2) {
+  width: 350px;
+  height: 350px;
+  flex-shrink: 0;
+  border-radius: 50%; /* Shortened syntax for perfect circle */
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h-h {
+  color: #fff;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 300;
+  text-align: start;
+  margin: 0;
+  text-align: start;
+  margin-top: 10px;
+  font-family: "TodaySansNow Pro";
+}
+
+.hero-img-2 {
+  height: 300px;
+  width: 300px;
+}
+
+/* ___________________________section-1________________ */
+.section-1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, auto); 
+  gap: 1rem; 
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.sec-1-card {
+  height: 16rem; 
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 20.648px 0px rgba(88, 131, 165, 0.26);
+}
+
+.sec-title {
+  font-size: 1.2rem;
+  font-style: normal;
+  margin-top: 1rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  height: 2.5rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.first {
+  border-radius: 2rem;
+  background: #fff;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.first-div {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 40px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.support-logo {
+  height: 10rem;
+  width: 10rem;
+}
+
+.first-img {
+  border-radius: 2rem;
+}
+
+@media (max-width: 768px) {
+  .section-1 {
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .first-div {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .log-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/*--------------------------------------------  */
+.hero-container {
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 25rem;
+  margin-top: 0.5rem;
+  padding: 10px 10px 10px 35px; /* Ensure padding leaves space for the icon */
+  font-size: 0.8rem;
+  height: 2.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: gray;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  pointer-events: none; /* Makes sure the icon doesn't interfere with input focus */
+  font-size: 1.1rem;
+}
+
+/* ------------------------------------------- */
+
+
+
+/* ______________________first________________________- */
+
+.f1h {
+  font-size: 48px;
+  color: #1e3565;
+  margin: 0;
+  font-family: "Tiempos Fine";
+  line-height: 45px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.f1h span {
+  color: #60a2a9;
+}
+
+.f3p,
+.f2p {
+  color: #1e3565;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  font-family: "TodaySansNow Pro";
+  margin: 0;
+}
+
+.f2p > span {
+  font-weight: 500;
+}
+
+.f3p > span {
+  font-weight: 500;
+}
+
+.f2p,
+.f3p {
+  margin-bottom: 15px;
+}
+
+/* _________________________8_______________________- */
+.faqs-section {
+  height: auto; /* Allow flexible height for responsiveness */
+  flex-shrink: 0;
+  border-radius: 2rem;
+  background: #fff;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.faqs-title {
+  color: var(--1-e-3565, #1e3565);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.fffff {
+  color: #9acf8c96;
+}
+
+.faq-question {
+  color: var(--1-e-3565, #1e3565);
+  font-size: 18px;
+  font-family: "TodaySansNow Pro";
+  flex: 1; /* Allow the text to take up remaining space */
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+.faq-content {
+  max-height: 0;
+  font-family: "TodaySansNow Pro";
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 20px;
+  color: #555;
+}
+
+.faq-item.active .faq-content {
+  max-height: 200px; /* Adjust this to the maximum height of the content */
+  padding: 10px 20px;
+}
+
+.faq-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active {
+  background: rgba(240, 240, 240, 0.9); /* Optional background change */
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.view-all {
+  text-align: right;
+  font-family: "TodaySansNow Pro";
+  cursor: pointer;
+}
+/* 
+@media (max-width: 768px) {
+  .faqs-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .faqs-title {
+    font-size: 28px;
+  }
+
+  .faq-item {
+    height: auto; 
+    padding: 8px; 
+  }
+
+  .faq-question {
+    font-size: 14px;
+  }
+
+  .faq-icon {
+    width: 16px;
+    height: 16px; 
+  }
+} */
+/* @media (max-width: 640) {
+  .faqs-section {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background: #fff;
+    margin-bottom: 0px;
+    padding-left: 63px;
+    padding-right: 63px;
+  }
+} */
+
+/* ____________________Responsive Styles________________________ */
+.footer {
+  top: 400vh;
+  background-color: #1e3565; /* Dark blue background */
+  color: #ffffff; /* White text */
+  padding: 20px 50px; /* Top and bottom spacing */
+  font-family: "TodaySansNow Pro";
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 91px;
+  padding-right: 85px;
+  padding-left: 85px;
+  box-sizing: border-box; /* Ensure padding is included in element's total width and height */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+.footer-logo {
+  margin-bottom: 38px;
+  margin-top: 50px;
+}
+
+.footer-logo > img {
+  max-width: 200px;
+  height: auto;
+  margin-top: 20px;
+}
+.footer-socials {
+  display: flex;
+  gap: 28px;
+  align-items: center; /* Align icons in the center */
+  justify-content: center;
+  margin-bottom: 28px; /* Add space between social icons and footer text */
+}
+
+.social-link {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+
+.social-icon {
+  height: 15px;
+  width: 15px;
+}
+
+.footer-divider {
+  border: 0;
+  border-top: 1px solid #ffffff;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.footer-text {
+  margin: 0;
+  margin-bottom: 66px;
+  font-size: 12px;
+}
+
+.footer-link {
+  color: #7cbb6c;
+  text-decoration: none;
+}
+
+.footer {
+  padding-left: 40px;
+  padding-right: 40px; /* Adjust padding for smaller screens */
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.footer-socials {
+  gap: 15px; /* Reduce gap between social icons */
+}
+
+.social-icon {
+  height: 20px; /* Increase icon size for better visibility */
+  width: 20px;
+}
+
+.footer-text {
+  font-size: 14px; /* Slightly larger text for better readability */
+}
+
+/* @media (max-width: 768px) {
+} */
+
+/* @media (max-width: 640px) {
+  .footer {
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .footer-text {
+    width: 346px;
+  }
+  .footer-socials {
+    gap: 10px;
+  }
+  .social-icon {
+    height: 11px;
+    width: 11px;
+  }
+} */

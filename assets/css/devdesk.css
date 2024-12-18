@@ -13746,7 +13746,7 @@ a.text-link:hover {
   font-size: 48px;
   color: #1e3565;
   margin: 0;
-  font-family: "Tiempos Fine";
+  
   line-height: 45px;
   margin-bottom: 40px;
   display: flex;
@@ -13765,7 +13765,7 @@ a.text-link:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
-  font-family: "TodaySansNow Pro";
+  
   margin: 0;
 }
 
@@ -13808,7 +13808,7 @@ a.text-link:hover {
 .faq-question {
   color: var(--1-e-3565, #1e3565);
   font-size: 18px;
-  font-family: "TodaySansNow Pro";
+  
   flex: 1; /* Allow the text to take up remaining space */
   font-weight: 400;
   display: flex;
@@ -13819,7 +13819,7 @@ a.text-link:hover {
 }
 .faq-content {
   max-height: 0;
-  font-family: "TodaySansNow Pro";
+  
   overflow: hidden;
   transition: max-height 0.3s ease-out, padding 0.3s ease-out;
   font-size: 16px;

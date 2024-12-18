@@ -1,0 +1,62 @@
+<!-- Feedback Widget -->
+<div id="feedback-widget">
+    <button id="open-feedback" onclick="toggleForm()">Did not Find What You Were Looking For?</button>
+    <div id="feedback-form">
+      <iframe
+        src="https://forms.gle/MxEmyoLz9VJF11f2A"
+        frameborder="0"
+        style="width: 100%; height: 100%;"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  
+  <!-- Floating Widget CSS -->
+  <style>
+    #feedback-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
+    #open-feedback {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  
+    #open-feedback:hover {
+      background-color: #0056b3;
+    }
+  
+    #feedback-form {
+      display: none;
+      width: 400px;
+      height: 400px;
+      background-color: white;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  </style>
+  
+  <!-- Toggle Feedback Form Script -->
+  <script>
+    function toggleForm() {
+      const form = document.getElementById("feedback-form");
+      if (form.style.display === "none" || form.style.display === "") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
+    }
+  </script>

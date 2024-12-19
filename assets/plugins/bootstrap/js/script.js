@@ -113,24 +113,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     // Feedback Widget Integration
     const injectFeedbackWidget = () => {
-        // Use absolute path to ensure compatibility across directory levels
-        const basePath = '/feedback-widget.html';
-
+        // Adjust relative path based on the location of script.js
+        const basePath = '../../../feedback-widget.html';
+    
         fetch(basePath)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Failed to load feedback widget');
+                    throw new Error(`Failed to load feedback widget: ${response.status}`);
                 }
                 return response.text();
             })
             .then((html) => {
                 // Inject the feedback widget into the body
                 document.body.insertAdjacentHTML('beforeend', html);
-
+    
                 // Attach event listener to Feedback Button
                 const openFeedbackButton = document.getElementById("open-feedback");
                 const feedbackForm = document.getElementById("feedback-form");
-
+    
                 if (openFeedbackButton && feedbackForm) {
                     openFeedbackButton.addEventListener("click", () => {
                         feedbackForm.style.display =
@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch((error) => console.error('Error loading the Feedback Widget:', error));
     };
+    
+    document.addEventListener("DOMContentLoaded", injectFeedbackWidget);
 
     injectFeedbackWidget(); // Inject the widget into all pages
 });

@@ -47,101 +47,141 @@ document.addEventListener("DOMContentLoaded", () => {
             mobileMenu.classList.toggle("open");
         });
     }
+
     // Search Functionality
-         // Search Functionality
-         const searchForm = document.querySelector(".search-form");
-         if (searchForm) {
-             searchForm.addEventListener("submit", (event) => {
-                 event.preventDefault();
-                 const searchInput = document.querySelector(".search-input");
-                 const searchTerm = searchInput.value.trim();
- 
-                if (searchTerm) {
-                      window.location.href = `/search-results.html?query=${encodeURIComponent(searchTerm)}`;
-                  }
-             });
-         }
+    const searchForm = document.querySelector(".search-form");
+    if (searchForm) {
+        searchForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const searchInput = document.querySelector(".search-input");
+            const searchTerm = searchInput.value.trim();
 
-           // Function to extract text content from HTML elements
-        const getTextContent = (element) => {
-            if (!element) return "";
-            return element.textContent || element.innerText || "";
-        };
+            if (searchTerm) {
+                window.location.href = `/search-results.html?query=${encodeURIComponent(searchTerm)}`;
+            }
+        });
+    }
 
-        // Search results page logic
-        if (window.location.pathname.includes("search-results.html")) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchTerm = urlParams.get("query");
-           const resultsContainer = document.getElementById("search-results-container");
-
-              if (searchTerm && resultsContainer) {
-                   fetch("./sitemap.xml")
-                      .then(response => response.text())
-                      .then(xmlText => {
-                         const parser = new DOMParser();
-                         const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-                         const urls = Array.from(xmlDoc.querySelectorAll('loc')).map(loc => loc.textContent);
-                            
-                         Promise.all(urls.map(url=>fetch(url).then(response=>response.text())))
-                           .then(responses => {
-                              const pagesContent = responses.map(response=> {
-                                  const tempDiv = document.createElement('div');
-                                      tempDiv.innerHTML = response;
-                                       const title = getTextContent(tempDiv.querySelector("h1"));
-                                       const text = getTextContent(tempDiv.querySelector("body"));
-                                       return { url, title, text };
-                                  })
-                                const filteredPages = pagesContent.filter(page=> page.title.toLowerCase().includes(searchTerm.toLowerCase()) || page.text.toLowerCase().includes(searchTerm.toLowerCase()));
-                                
-                                if (filteredPages.length > 0){
-                                    const html = filteredPages.map(page =>
-                                       `<div class="search-result">
-                                              <h3><a href="${page.url}">${page.title}</a></h3>
-                                          </div>`
-                                          ).join('');
-                                        resultsContainer.innerHTML = html;
-                                }else{
-                                   resultsContainer.innerHTML = `<p>No results found for "${searchTerm}".</p>`;
-                                }
-                           })
-                         })
-                         
-             } else if (resultsContainer)
-             {
-                 resultsContainer.innerHTML = `<p>Please enter a search query.</p>`;
-             }
-        }
-    // Feedback Widget Integration
-    const injectFeedbackWidget = () => {
-        // Adjust relative path based on the location of script.js
-        const basePath = '../../../feedback-widget.html';
-    
-        fetch(basePath)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load feedback widget: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then((html) => {
-                // Inject the feedback widget into the body
-                document.body.insertAdjacentHTML('beforeend', html);
-    
-                // Attach event listener to Feedback Button
-                const openFeedbackButton = document.getElementById("open-feedback");
-                const feedbackForm = document.getElementById("feedback-form");
-    
-                if (openFeedbackButton && feedbackForm) {
-                    openFeedbackButton.addEventListener("click", () => {
-                        feedbackForm.style.display =
-                            feedbackForm.style.display === "block" ? "none" : "block";
-                    });
-                }
-            })
-            .catch((error) => console.error('Error loading the Feedback Widget:', error));
+    // Function to extract text content from HTML elements
+    const getTextContent = (element) => {
+        if (!element) return "";
+        return element.textContent || element.innerText || "";
     };
-    
-    document.addEventListener("DOMContentLoaded", injectFeedbackWidget);
 
-    injectFeedbackWidget(); // Inject the widget into all pages
+    // Search results page logic
+    if (window.location.pathname.includes("search-results.html")) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get("query");
+        const resultsContainer = document.getElementById("search-results-container");
+
+        if (searchTerm && resultsContainer) {
+            fetch("./sitemap.xml")
+                .then((response) => response.text())
+                .then((xmlText) => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+                    const urls = Array.from(xmlDoc.querySelectorAll("loc")).map((loc) => loc.textContent);
+
+                    Promise.all(urls.map((url) => fetch(url).then((response) => response.text()))).then(
+                        (responses) => {
+                            const pagesContent = responses.map((response, index) => {
+                                const tempDiv = document.createElement("div");
+                                tempDiv.innerHTML = response;
+                                const title = getTextContent(tempDiv.querySelector("h1"));
+                                const text = getTextContent(tempDiv.querySelector("body"));
+                                return { url: urls[index], title, text };
+                            });
+
+                            const filteredPages = pagesContent.filter(
+                                (page) =>
+                                    page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    page.text.toLowerCase().includes(searchTerm.toLowerCase())
+                            );
+
+                            if (filteredPages.length > 0) {
+                                const html = filteredPages
+                                    .map(
+                                        (page) =>
+                                            `<div class="search-result">
+                                                <h3><a href="${page.url}">${page.title}</a></h3>
+                                            </div>`
+                                    )
+                                    .join("");
+                                resultsContainer.innerHTML = html;
+                            } else {
+                                resultsContainer.innerHTML = `<p>No results found for "${searchTerm}".</p>`;
+                            }
+                        }
+                    );
+                });
+        } else if (resultsContainer) {
+            resultsContainer.innerHTML = `<p>Please enter a search query.</p>`;
+        }
+    }
+
+    // Feedback Widget Integration (Directly Embedded)
+    const injectFeedbackWidget = () => {
+        // Define the HTML and styles for the feedback widget as a string
+        const feedbackWidgetHTML = `
+        <!-- Feedback Widget -->
+        <div id="feedback-widget">
+            <button id="open-feedback">
+                Did not Find What You Were Looking For?
+            </button>
+            <div id="feedback-form" style="display: none; width: 400px; height: 400px; background-color: white;
+                        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); border-radius: 10px; overflow: hidden;">
+                <iframe 
+                    src="https://forms.gle/MxEmyoLz9VJF11f2A" 
+                    frameborder="0" 
+                    style="width: 100%; height: 100%;" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Feedback Widget CSS -->
+        <style>
+            #feedback-widget {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            #open-feedback {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-bottom: 10px;
+                transition: background-color 0.3s ease;
+            }
+
+            #open-feedback:hover {
+                background-color: #0056b3;
+            }
+        </style>
+        `;
+
+        // Dynamically add the widget to the page
+        document.body.insertAdjacentHTML("beforeend", feedbackWidgetHTML);
+
+        // Add functionality for toggling the feedback form
+        const openFeedbackButton = document.getElementById("open-feedback");
+        const feedbackForm = document.getElementById("feedback-form");
+
+        if (openFeedbackButton && feedbackForm) {
+            openFeedbackButton.addEventListener("click", () => {
+                feedbackForm.style.display = feedbackForm.style.display === "block" ? "none" : "block";
+            });
+        }
+    };
+
+    injectFeedbackWidget(); // Call this function to add the widget to the page
 });

@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- Feedback Widget -->
         <div id="feedback-widget">
             <button id="open-feedback">
-                Did not Find What You Were Looking For?
+                Did Not Find What You Were Looking For?
             </button>
             <div id="feedback-form" style="display: none; width: 400px; height: 400px; background-color: white;
                         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); border-radius: 10px; overflow: hidden;">

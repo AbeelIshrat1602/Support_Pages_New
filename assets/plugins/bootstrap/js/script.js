@@ -82,46 +82,46 @@ document.addEventListener("DOMContentLoaded", () => {
                     const xmlDoc = parser.parseFromString(xmlText, "text/xml");
                     const urls = Array.from(xmlDoc.querySelectorAll("loc")).map((loc) => loc.textContent);
 
-                    Promise.all(urls.map((url) => fetch(url).then((response) => response.text()))).then(
-                        (responses) => {
-                            const pagesContent = responses.map((response, index) => {
-                                const tempDiv = document.createElement("div");
-                                tempDiv.innerHTML = response;
-                                const title = getTextContent(tempDiv.querySelector("h1"));
-                                const text = getTextContent(tempDiv.querySelector("body"));
-                                return { url: urls[index], title, text };
-                            });
+                    Promise.all(
+                        urls.map((url) => fetch(url).then((response) => response.text()))
+                    ).then((responses) => {
+                        const pagesContent = responses.map((response, index) => {
+                            const tempDiv = document.createElement("div");
+                            tempDiv.innerHTML = response;
+                            const title = getTextContent(tempDiv.querySelector("h1"));
+                            const text = getTextContent(tempDiv.querySelector("body"));
+                            return { url: urls[index], title, text };
+                        });
 
-                            const filteredPages = pagesContent.filter(
-                                (page) =>
-                                    page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                    page.text.toLowerCase().includes(searchTerm.toLowerCase())
-                            );
+                        const filteredPages = pagesContent.filter(
+                            (page) =>
+                                page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                page.text.toLowerCase().includes(searchTerm.toLowerCase())
+                        );
 
-                            if (filteredPages.length > 0) {
-                                const html = filteredPages
-                                    .map(
-                                        (page) =>
-                                            `<div class="search-result">
-                                                <h3><a href="${page.url}">${page.title}</a></h3>
-                                            </div>`
-                                    )
-                                    .join("");
-                                resultsContainer.innerHTML = html;
-                            } else {
-                                resultsContainer.innerHTML = `<p>No results found for "${searchTerm}".</p>`;
-                            }
+                        if (filteredPages.length > 0) {
+                            const html = filteredPages
+                                .map(
+                                    (page) =>
+                                        `<div class="search-result">
+                                            <h3><a href="${page.url}">${page.title}</a></h3>
+                                        </div>`
+                                )
+                                .join("");
+                            resultsContainer.innerHTML = html;
+                        } else {
+                            resultsContainer.innerHTML = `<p>No results found for "${searchTerm}".</p>`;
                         }
-                    );
+                    });
                 });
         } else if (resultsContainer) {
             resultsContainer.innerHTML = `<p>Please enter a search query.</p>`;
         }
     }
 
-    // Feedback Widget Integration (Directly Embedded)
+    // Feedback Widget Integration
     const injectFeedbackWidget = () => {
-        // Define the HTML and styles for the feedback widget as a string
+        // Define the Feedback Widget as an HTML string
         const feedbackWidgetHTML = `
         <!-- Feedback Widget -->
         <div id="feedback-widget">
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </style>
         `;
 
-        // Dynamically add the widget to the page
+        // Dynamically inject feedback widget into the page
         document.body.insertAdjacentHTML("beforeend", feedbackWidgetHTML);
 
         // Add functionality for toggling the feedback form
@@ -178,10 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (openFeedbackButton && feedbackForm) {
             openFeedbackButton.addEventListener("click", () => {
-                feedbackForm.style.display = feedbackForm.style.display === "block" ? "none" : "block";
+                feedbackForm.style.display =
+                    feedbackForm.style.display === "block" ? "none" : "block";
             });
         }
     };
 
-    injectFeedbackWidget(); // Call this function to add the widget to the page
+    // Inject Feedback Widget into the page
+    injectFeedbackWidget();
 });
